@@ -1,0 +1,19 @@
+{
+  "name": "SpotifyArtistLookup",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "lodash": "^4.5.1",
+    "react-native": "^0.20.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "^2.2.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-filenames": "^0.2.0",
+    "eslint-plugin-react": "^4.1.0"
+  }
+}
