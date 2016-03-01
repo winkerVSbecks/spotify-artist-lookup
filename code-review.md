@@ -89,6 +89,8 @@ index.js seems to be handling the bootstrapping of the project while `class Spot
 
 Artist.js and NavigationBar.js don't feel like components (they don't extend the components class at the very least). Maybe they belong in another category/folder? (Views?)
 
+Shouldn't ios and android folders be in the .gitignore file?
+
 ## PR's and Flow
 N/A
 ## Security
