@@ -25,14 +25,14 @@ metrics:
   - [ ] README.md / documentation explaining the architecture
   - [ ] README.md explaining environment setup and how to run
 
-- [x] Clean Code
+- [ ] Clean Code
   - [x] Single-purpose services, functions, modules, etc
   - [x] Files of reasonable length
   - [x] Is the code easy to reason about, does it pass the 'sniff test'
   - [x] Is there a consistent naming convention for files, folders, services, etc
   - [ ] Appropriate documentation - jsDoc, readme, etc
 
-- [x] Proper PR practices & Rangle FLow
+- [ ] Proper PR practices & Rangle FLow
   - [ ] Reasonably sized PRs
   - [ ] Descriptive PRs
   - [ ] 'noisy commits' squashed
@@ -54,7 +54,7 @@ metrics:
 N/A
 
 ## Architecture
-N/A
+No environment setup steps or how to run :(
 
 ## Code Cleanliness
 Trailing Commas at the end of objects are everywhere. Shouldn't the linter catch these?
@@ -88,6 +88,8 @@ Might want to pull out `class SpotifyArtistLookup` from index.js.
 index.js seems to be handling the bootstrapping of the project while `class SpotifyArtistLookup` seems to be addressing the routing or initial load.
 
 Artist.js and NavigationBar.js don't feel like components (they don't extend the components class at the very least). Maybe they belong in another category/folder? (Views?)
+
+FadeInView also feels like helper component if that makes sense. It helps augment the ListItem component by fading it in. Maybe another seperate category/folder?
 
 Shouldn't ios and android folders be in the .gitignore file?
 
