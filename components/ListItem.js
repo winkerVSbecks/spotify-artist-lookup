@@ -9,6 +9,7 @@ import React, {
 import FadeInView from './FadeInView';
 import clrs from '../utils/clrs';
 
+const placeholder = require('../assets/placeholder.jpg');
 
 export default class ListItem extends Component {
   constructor(props) {
@@ -25,22 +26,21 @@ export default class ListItem extends Component {
       url: artist.external_urls.spotify,
     };
 
+    const image = artist.images[0] ? { uri: artist.images[0].url } :
+                                     placeholder;
+
     return (
       <TouchableOpacity
         underlayColor={ clrs.gray }
         onPress={() => navigator.push(ARTIST_STATE)}>
+
         <FadeInView delay={ index * 25 }>
           <View style={ styles.mediaObject }>
-            <Image src={{ uri: artist.images[0] }} style={{
-              width: 40,
-              height: 40,
-              backgroundColor: clrs.pink,
-              marginRight: 16,
-              marginLeft: 16,
-            }} />
-            <Text style={{ flex: 1 }}>{ artist.name }</Text>
+            <Image source={ image } style={ styles.image } />
+            <Text style={ styles.text }>{ artist.name }</Text>
           </View>
         </FadeInView>
+
       </TouchableOpacity>
     );
   }
@@ -52,6 +52,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 10,
+  },
+  text: { flex: 1 },
+  image: {
+    backgroundColor: clrs.gray,
+    width: 40,
+    height: 40,
+    marginRight: 16,
+    marginLeft: 16,
   },
 });
 
