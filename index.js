@@ -25,10 +25,6 @@ class SpotifyArtistLookup extends Component {
       />
     );
   }
-
-  configureScene() {
-    return CustomSceneConfig;
-  }
 }
 
 AppRegistry.registerComponent('SpotifyArtistLookup', () => SpotifyArtistLookup);
