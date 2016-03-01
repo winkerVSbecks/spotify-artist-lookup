@@ -36,9 +36,11 @@ export default class Main extends Component {
           style={{ flex: 1, alignSelf: 'stretch' }}
           renderRow={
             (artist, sId, id) => {
-              return <ListItem index={ id }
-                artist={ artist }
-                navigator={ navigator } />;
+              return (
+                <ListItem index={ id }
+                  artist={ artist }
+                  navigator={ navigator } />
+              );
             }
           } />
 
@@ -58,7 +60,7 @@ export default class Main extends Component {
   }, 400);
 }
 
-ListItem.propTypes = {
+Main.propTypes = {
   navigator: React.PropTypes.object,
 };
 

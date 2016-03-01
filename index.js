@@ -2,12 +2,10 @@ import React, {
   AppRegistry,
   Component,
   Navigator,
-  Text,
-  View,
 } from 'react-native';
 import Main from './components/Main';
+import Artist from './components/Artist';
 import NavigationBar from './components/NavigationBar';
-import clrs from './utils/clrs';
 
 class SpotifyArtistLookup extends Component {
   renderScene(route, navigator) {
@@ -15,11 +13,7 @@ class SpotifyArtistLookup extends Component {
       return <Main navigator={ navigator } />;
     }
 
-    return (
-      <View style={{ flex: 1, paddingTop: 64, backgroundColor: clrs.pink }}>
-        <Text>Route Two</Text>
-      </View>
-    );
+    return <Artist url={ route.url } />;
   }
 
   render() {

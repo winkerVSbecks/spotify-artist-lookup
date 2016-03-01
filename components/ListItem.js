@@ -19,13 +19,19 @@ export default class ListItem extends Component {
   render() {
     const {index, artist, navigator} = this.props;
 
+    const ARTIST_STATE = {
+      id: 'ARTIST_DETAIL',
+      title: artist.name,
+      url: artist.external_urls.spotify,
+    };
+
     return (
       <TouchableOpacity
         underlayColor={ clrs.gray }
-        onPress={() => navigator.push({ id: 'TWO', title: 'Route 2' })}>
+        onPress={() => navigator.push(ARTIST_STATE)}>
         <FadeInView delay={ index * 25 }>
           <View style={ styles.mediaObject }>
-            <Image src={{ uri: 'http://placehold.it/120' }} style={{
+            <Image src={{ uri: artist.images[0] }} style={{
               width: 40,
               height: 40,
               backgroundColor: clrs.pink,
