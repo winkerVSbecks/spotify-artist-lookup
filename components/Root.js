@@ -1,27 +1,41 @@
 import React, {
   Component,
-  Navigator,
+  StatusBar,
+  StyleSheet,
+  TextInput,
+  View,
 } from 'react-native';
-import Main from './Main';
-import Artist from './Artist';
-import NavigationBar from './NavigationBar';
+import clrs from '../utils/clrs';
 
 export default class Root extends Component {
-  renderScene(route, navigator) {
-    if (route.id === 'MAIN') {
-      return <Main navigator={ navigator } />;
-    }
-
-    return <Artist url={ route.url } />;
-  }
-
   render() {
     return (
-      <Navigator style={{ flex: 1 }}
-        initialRoute={{ id: 'MAIN', title: 'Spotify Artist Lookup' }}
-        renderScene={ this.renderScene }
-        navigationBar={ NavigationBar }
-      />
+      <View style={ styles.container }>
+
+        <StatusBar barStyle="light-content" />
+
+        <TextInput style={ styles.searchBox }
+          onChangeText={ this.makeQuery } />
+
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 64,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: clrs.white,
+  },
+  searchBox: {
+    height: 40,
+    borderColor: clrs.black,
+    borderWidth: 2,
+    margin: 16,
+    paddingLeft: 10,
+    fontWeight: '800',
+  },
+});
