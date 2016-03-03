@@ -9,7 +9,7 @@ import React, {
 import {debounce} from 'lodash';
 import ListItem from './ListItem';
 import clrs from '../utils/clrs';
-import {getResults} from '../utils/fetcher';
+import {searchFor} from '../utils/fetcher';
 
 
 export default class Main extends Component {
@@ -19,9 +19,11 @@ export default class Main extends Component {
   }
 
   render() {
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     const { artists } = this.state;
     const { navigator } = this.props;
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
     const dataSource = ds.cloneWithRows(artists);
 
     return (
@@ -48,10 +50,9 @@ export default class Main extends Component {
     );
   }
 
-  makeQuery = debounce((text) => {
-    getResults(text)
-      .then((res) => {
-        const artists = res.artists ? res.artists.items : [];
+  makeQuery = debounce(query => {
+    searchFor(query)
+      .then(artists => {
         this.setState({ artists });
       })
       .catch((error) => {

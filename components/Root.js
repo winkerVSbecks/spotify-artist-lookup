@@ -1,13 +1,12 @@
 import React, {
-  AppRegistry,
   Component,
   Navigator,
 } from 'react-native';
-import Main from './components/Main';
-import Artist from './components/Artist';
-import NavigationBar from './components/NavigationBar';
+import Main from './Main';
+import Artist from './Artist';
+import NavigationBar from './NavigationBar';
 
-class SpotifyArtistLookup extends Component {
+export default class Root extends Component {
   renderScene(route, navigator) {
     if (route.id === 'MAIN') {
       return <Main navigator={ navigator } />;
@@ -26,5 +25,3 @@ class SpotifyArtistLookup extends Component {
     );
   }
 }
-
-AppRegistry.registerComponent('SpotifyArtistLookup', () => SpotifyArtistLookup);
