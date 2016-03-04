@@ -2,29 +2,32 @@ import React, {
   Component,
   StyleSheet,
   View,
+  Text,
   TextInput,
   ListView,
   StatusBar,
 } from 'react-native';
-import {debounce} from 'lodash';
-import ListItem from './ListItem';
 import clrs from '../utils/clrs';
-import {searchFor} from '../utils/fetcher';
 
 
 export default class Main extends Component {
+
   constructor(props) {
     super(props);
-    this.state = { artists: [] };
-  }
 
-  render() {
-    const { artists } = this.state;
-    const { navigator } = this.props;
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
-    const dataSource = ds.cloneWithRows(artists);
+
+    const dataSource = ds.cloneWithRows(['Spectacles', 'Giraffe', 'Turtle', 'Shark', 'Lamp', 'Salt', 'Beef', 'Drawer', 'Brocolli', 'Raspberries', 'Plate', 'Zebra']);
+
+    this.state = {
+      dataSource: dataSource,
+    };
+  }
+
+  render() {
+    const { dataSource } = this.state;
 
     return (
       <View style={ styles.container }>
@@ -37,11 +40,11 @@ export default class Main extends Component {
         <ListView dataSource={ dataSource }
           style={{ flex: 1, alignSelf: 'stretch' }}
           renderRow={
-            (artist, sId, id) => {
+            (row, sId, id) => {
               return (
-                <ListItem index={ id }
-                  artist={ artist }
-                  navigator={ navigator } />
+                <Text style={ styles.row }>
+                  { id }. { row }
+                </Text>
               );
             }
           } />
@@ -49,21 +52,7 @@ export default class Main extends Component {
       </View>
     );
   }
-
-  makeQuery = debounce(query => {
-    searchFor(query)
-      .then(artists => {
-        this.setState({ artists });
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }, 400);
 }
-
-Main.propTypes = {
-  navigator: React.PropTypes.object,
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -81,10 +70,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontWeight: '800',
   },
-  mediaObject: {
+  row: {
     flex: 1,
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginBottom: 10,
+    margin: 16,
   },
 });
