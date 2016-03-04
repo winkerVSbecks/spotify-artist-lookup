@@ -18,7 +18,7 @@ const ListItem = ({ index, text, imageUrl, navState, navigator }) => {
   return (
     <TouchableOpacity
       underlayColor={ clrs.gray }
-      onPress={() => navigator.push(navState)}>
+      onPress={ () => navigator.push(navState) }>
 
       <FadeInView delay={ index * 25 }>
         <View style={ styles.mediaObject }>
