@@ -1,5 +1,4 @@
 import React, {
-  Component,
   StyleSheet,
   Text,
   View,
@@ -11,41 +10,28 @@ import clrs from '../utils/clrs';
 
 const placeholder = require('../assets/placeholder.jpg');
 
-export default class ListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { artists: [] };
-  }
+const ListItem = ({ index, text, imageUrl, navState, navigator }) => {
+  const image = (
+    imageUrl ? { uri: imageUrl } : placeholder
+  );
 
-  render() {
-    const {index, artist, navigator} = this.props;
+  return (
+    <TouchableOpacity
+      underlayColor={ clrs.gray }
+      onPress={() => navigator.push(navState)}>
 
-    const ARTIST_STATE = {
-      id: 'ARTIST_DETAIL',
-      title: artist.name,
-      url: artist.external_urls.spotify,
-    };
+      <FadeInView delay={ index * 25 }>
+        <View style={ styles.mediaObject }>
+          <Image source={ image } style={ styles.image } />
+          <Text style={ styles.text }>{ text }</Text>
+        </View>
+      </FadeInView>
 
-    const image = (
-      artist.images[0] ? { uri: artist.images[0].url } : placeholder
-    );
+    </TouchableOpacity>
+  );
+};
 
-    return (
-      <TouchableOpacity
-        underlayColor={ clrs.gray }
-        onPress={() => navigator.push(ARTIST_STATE)}>
-
-        <FadeInView delay={ index * 25 }>
-          <View style={ styles.mediaObject }>
-            <Image source={ image } style={ styles.image } />
-            <Text style={ styles.text }>{ artist.name }</Text>
-          </View>
-        </FadeInView>
-
-      </TouchableOpacity>
-    );
-  }
-}
+export default ListItem;
 
 const styles = StyleSheet.create({
   mediaObject: {
@@ -66,6 +52,8 @@ const styles = StyleSheet.create({
 
 ListItem.propTypes = {
   index: React.PropTypes.string,
-  artist: React.PropTypes.object,
+  text: React.PropTypes.string,
+  imageUrl: React.PropTypes.string,
+  navState: React.PropTypes.object,
   navigator: React.PropTypes.object,
 };
