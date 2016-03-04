@@ -10,15 +10,14 @@ import clrs from '../utils/clrs';
 
 const placeholder = require('../assets/placeholder.jpg');
 
-const ListItem = ({ index, text, imageUrl, navState, navigator }) => {
+const ListItem = ({ index, text, imageUrl }) => {
   const image = (
     imageUrl ? { uri: imageUrl } : placeholder
   );
 
   return (
     <TouchableOpacity
-      underlayColor={ clrs.gray }
-      onPress={ () => navigator.push(navState) }>
+      underlayColor={ clrs.gray }>
 
       <FadeInView delay={ index * 25 }>
         <View style={ styles.mediaObject }>
@@ -54,6 +53,4 @@ ListItem.propTypes = {
   index: React.PropTypes.string,
   text: React.PropTypes.string,
   imageUrl: React.PropTypes.string,
-  navState: React.PropTypes.object,
-  navigator: React.PropTypes.object,
 };

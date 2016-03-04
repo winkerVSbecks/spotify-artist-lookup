@@ -24,21 +24,12 @@ export default class Main extends Component {
   }
 
   renderRow = (artist, sId, id) => {
-    const { navigator } = this.props;
-    const ARTIST_STATE = {
-      id: 'ARTIST_DETAIL',
-      title: artist.name,
-      url: artist.external_urls.spotify,
-    };
-
     const imageUrl = artist.images[0] ? artist.images[0].url : null;
 
     return (
       <ListItem index={ id }
         text={ artist.name }
-        imageUrl={ imageUrl }
-        navstate={ ARTIST_STATE }
-        navigator={ navigator } />
+        imageUrl={ imageUrl } />
     );
   };
 
@@ -73,10 +64,6 @@ export default class Main extends Component {
       });
   }, 400);
 }
-
-Main.propTypes = {
-  navigator: React.PropTypes.object,
-};
 
 const styles = StyleSheet.create({
   container: {
