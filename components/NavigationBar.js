@@ -54,9 +54,6 @@ const styles = StyleSheet.create({
   navBarLeftButton: {
     paddingLeft: 10,
   },
-  navBarRightButton: {
-    paddingRight: 10,
-  },
 });
 
 

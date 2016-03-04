@@ -26,8 +26,9 @@ export default class ListItem extends Component {
       url: artist.external_urls.spotify,
     };
 
-    const image = artist.images[0] ? { uri: artist.images[0].url } :
-                                     placeholder;
+    const image = (
+      artist.images[0] ? { uri: artist.images[0].url } : placeholder
+    );
 
     return (
       <TouchableOpacity

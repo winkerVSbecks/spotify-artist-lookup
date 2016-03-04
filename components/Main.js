@@ -15,16 +15,26 @@ import {searchFor} from '../utils/fetcher';
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { artists: [] };
+
+    const dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
+
+    this.state = { artists: dataSource };
   }
+
+  renderRow = (artist, sId, id) => {
+    const { navigator } = this.props;
+
+    return (
+      <ListItem index={ id }
+        artist={ artist }
+        navigator={ navigator } />
+    );
+  };
 
   render() {
     const { artists } = this.state;
-    const { navigator } = this.props;
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-    const dataSource = ds.cloneWithRows(artists);
 
     return (
       <View style={ styles.container }>
@@ -34,17 +44,9 @@ export default class Main extends Component {
         <TextInput style={ styles.searchBox }
           onChangeText={ this.makeQuery } />
 
-        <ListView dataSource={ dataSource }
-          style={{ flex: 1, alignSelf: 'stretch' }}
-          renderRow={
-            (artist, sId, id) => {
-              return (
-                <ListItem index={ id }
-                  artist={ artist }
-                  navigator={ navigator } />
-              );
-            }
-          } />
+        <ListView dataSource={ artists }
+          style={ styles.listView }
+          renderRow={ this.renderRow } />
 
       </View>
     );
@@ -53,7 +55,9 @@ export default class Main extends Component {
   makeQuery = debounce(query => {
     searchFor(query)
       .then(artists => {
-        this.setState({ artists });
+        this.setState({
+          artists: this.state.artists.cloneWithRows(artists),
+        });
       })
       .catch((error) => {
         throw error;
@@ -81,10 +85,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontWeight: '800',
   },
-  mediaObject: {
+  listView: {
     flex: 1,
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginBottom: 10,
+    alignSelf: 'stretch',
   },
 });
