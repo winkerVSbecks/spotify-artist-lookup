@@ -37,7 +37,7 @@ export default class Main extends Component {
       <ListItem index={ id }
         text={ artist.name }
         imageUrl={ imageUrl }
-        navstate={ ARTIST_STATE }
+        navState={ ARTIST_STATE }
         navigator={ navigator } />
     );
   };
