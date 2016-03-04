@@ -5,27 +5,23 @@ import React, {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import FadeInView from './FadeInView';
 import clrs from '../utils/clrs';
 
 const placeholder = require('../assets/placeholder.jpg');
 
-const ListItem = ({ index, text, imageUrl, navState, navigator }) => {
+const ListItem = ({ text, imageUrl }) => {
   const image = (
     imageUrl ? { uri: imageUrl } : placeholder
   );
 
   return (
     <TouchableOpacity
-      underlayColor={ clrs.gray }
-      onPress={ () => navigator.push(navState) }>
+      underlayColor={ clrs.gray }>
 
-      <FadeInView delay={ index * 25 }>
-        <View style={ styles.mediaObject }>
-          <Image source={ image } style={ styles.image } />
-          <Text style={ styles.text }>{ text }</Text>
-        </View>
-      </FadeInView>
+      <View style={ styles.mediaObject }>
+        <Image source={ image } style={ styles.image } />
+        <Text style={ styles.text }>{ text }</Text>
+      </View>
 
     </TouchableOpacity>
   );
@@ -51,9 +47,6 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
-  index: React.PropTypes.string,
   text: React.PropTypes.string,
   imageUrl: React.PropTypes.string,
-  navState: React.PropTypes.object,
-  navigator: React.PropTypes.object,
 };
