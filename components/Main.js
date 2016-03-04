@@ -6,10 +6,8 @@ import React, {
   ListView,
   StatusBar,
 } from 'react-native';
-import {debounce} from 'lodash';
 import ListItem from './ListItem';
 import clrs from '../utils/clrs';
-import {searchFor} from '../utils/fetcher';
 
 
 export default class Main extends Component {
@@ -20,16 +18,16 @@ export default class Main extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
 
-    this.state = { artists: dataSource };
+    const data = ['Spectacles', 'Giraffe', 'Turtle', 'Shark', 'Lamp', 'Salt', 'Beef', 'Drawer', 'Brocolli', 'Raspberries', 'Plate', 'Zebra'];
+
+    this.state = { artists: dataSource.cloneWithRows(data) };
   }
 
-  renderRow = (artist, sId, id) => {
-    const { navigator } = this.props;
-
+  renderRow = (text, sId, id) => {
     return (
       <ListItem index={ id }
-        artist={ artist }
-        navigator={ navigator } />
+        text={ text }
+        image={ null } />
     );
   };
 
@@ -51,23 +49,7 @@ export default class Main extends Component {
       </View>
     );
   }
-
-  makeQuery = debounce(query => {
-    searchFor(query)
-      .then(artists => {
-        this.setState({
-          artists: this.state.artists.cloneWithRows(artists),
-        });
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }, 400);
 }
-
-Main.propTypes = {
-  navigator: React.PropTypes.object,
-};
 
 const styles = StyleSheet.create({
   container: {
