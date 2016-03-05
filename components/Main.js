@@ -34,8 +34,7 @@ export default class Main extends Component {
 
         <StatusBar barStyle="light-content" />
 
-        <TextInput style={ styles.searchBox }
-          onChangeText={ this.makeQuery } />
+        <TextInput style={ styles.searchBox } />
 
         <ListView dataSource={ dataSource }
           style={{ flex: 1, alignSelf: 'stretch' }}
