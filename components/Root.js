@@ -14,8 +14,7 @@ export default class Root extends Component {
 
         <StatusBar barStyle="light-content" />
 
-        <TextInput style={ styles.searchBox }
-          onChangeText={ this.makeQuery } />
+        <TextInput style={ styles.searchBox } />
 
       </View>
     );
