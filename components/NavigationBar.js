@@ -8,15 +8,15 @@ import clrs from '../utils/clrs';
 
 const NavigationBarRouteMapper = {
 
-  LeftButton: (route, navigator, index) => {
-    if (index === 0) {
+  LeftButton: (route, navigator) => {
+    if (route.id === 'MAIN') {
       return null;
     }
 
     return (
       <TouchableOpacity
-        onPress={() => navigator.pop()}
-        style={styles.navBarLeftButton}>
+        onPress={ () => navigator.pop() }
+        style={ styles.navBarLeftButton }>
         <Text style={[styles.navBarText, styles.navBarButtonText]}>
           Back
         </Text>
