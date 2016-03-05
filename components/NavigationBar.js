@@ -38,13 +38,6 @@ const NavigationBarRouteMapper = {
 
 };
 
-
-export default (
-  <Navigator.NavigationBar
-    style={ styles.navBar }
-    routeMapper={ NavigationBarRouteMapper } />
-);
-
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: clrs.blue,
@@ -62,3 +55,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
 });
+
+
+export default (
+  <Navigator.NavigationBar
+    style={ styles.navBar }
+    routeMapper={ NavigationBarRouteMapper } />
+);
