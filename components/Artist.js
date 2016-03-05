@@ -20,8 +20,7 @@ const Artist = ({ url }) => {
         source={{
           uri: url,
           method: 'GET',
-        }}
-        scalesPageToFit={false} />
+        }} />
     </View>
   );
 };
