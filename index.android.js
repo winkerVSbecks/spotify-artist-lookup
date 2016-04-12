@@ -1,4 +1,4 @@
 import {AppRegistry} from 'react-native';
-import Root from './components/Root';
+import Root from './src/containers/Root';
 
 AppRegistry.registerComponent('SpotifyArtistLookup', () => Root);

@@ -24,9 +24,8 @@ export default class Main extends Component {
   }
 
   renderRow = (artist, sId, id) => {
-    const { navigator } = this.props;
+    const { goTo } = this.props;
     const ARTIST_STATE = {
-      id: 'ARTIST_DETAIL',
       title: artist.name,
       url: artist.external_urls.spotify,
     };
@@ -37,8 +36,7 @@ export default class Main extends Component {
       <ListItem index={ id }
         text={ artist.name }
         imageUrl={ imageUrl }
-        navState={ ARTIST_STATE }
-        navigator={ navigator } />
+        action={ () => goTo(ARTIST_STATE) } />
     );
   };
 
@@ -75,7 +73,7 @@ export default class Main extends Component {
 }
 
 Main.propTypes = {
-  navigator: React.PropTypes.object,
+  goTo: React.PropTypes.func,
 };
 
 const styles = StyleSheet.create({
