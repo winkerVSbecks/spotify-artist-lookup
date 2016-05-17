@@ -15,19 +15,25 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({
+    const dataSource = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
 
-    const dataSource = ds.cloneWithRows(['Spectacles', 'Giraffe', 'Turtle', 'Shark', 'Lamp', 'Salt', 'Beef', 'Drawer', 'Brocolli', 'Raspberries', 'Plate', 'Zebra']);
+    const data = ['Spectacles', 'Giraffe', 'Turtle', 'Shark', 'Lamp', 'Salt', 'Beef', 'Drawer', 'Brocolli', 'Raspberries', 'Plate', 'Zebra'];
 
-    this.state = {
-      dataSource: dataSource,
-    };
+    this.state = { artists: dataSource.cloneWithRows(data) };
   }
 
+  renderRow = (row, sId, id) => {
+    return (
+      <Text style={ styles.row }>
+        { id }. { row }
+      </Text>
+    );
+  };
+
   render() {
-    const { dataSource } = this.state;
+    const { artists } = this.state;
 
     return (
       <View style={ styles.container }>
@@ -36,17 +42,9 @@ export default class Main extends Component {
 
         <TextInput style={ styles.searchBox } />
 
-        <ListView dataSource={ dataSource }
+        <ListView dataSource={ artists }
           style={{ flex: 1, alignSelf: 'stretch' }}
-          renderRow={
-            (row, sId, id) => {
-              return (
-                <Text style={ styles.row }>
-                  { id }. { row }
-                </Text>
-              );
-            }
-          } />
+          renderRow={ this.renderRow } />
 
       </View>
     );
