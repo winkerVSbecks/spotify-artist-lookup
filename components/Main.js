@@ -24,10 +24,10 @@ export default class Main extends Component {
     this.state = { artists: dataSource.cloneWithRows(data) };
   }
 
-  renderRow = (row, sId, id) => {
+  renderRow = (text, sId, rId) => {
     return (
       <Text style={ styles.row }>
-        { id }. { row }
+        { rId }. { text }
       </Text>
     );
   };
