@@ -9,7 +9,7 @@ import clrs from '../utils/clrs';
 
 const placeholder = require('../assets/placeholder.jpg');
 
-const ListItem = ({ text, imageUrl}) => {
+const ListItem = ({ text, imageUrl }) => {
   const image = (
     imageUrl ? { uri: imageUrl } : placeholder
   );
