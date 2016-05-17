@@ -23,9 +23,9 @@ export default class Main extends Component {
     this.state = { artists: dataSource.cloneWithRows(data) };
   }
 
-  renderRow = (text, sId, id) => {
+  renderRow = (text, sId, rId) => {
     return (
-      <ListItem index={ id }
+      <ListItem index={ rId }
         text={ text }
         image={ null } />
     );
